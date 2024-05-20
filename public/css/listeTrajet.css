@@ -1,0 +1,128 @@
+@import 'style.css';
+
+/* Ajoutez ces règles à la fin de votre fichier listeTrajet.css */
+
+
+
+body.dark h1 {
+    color: var(--text-color);
+}
+
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #333;
+    text-align: center;
+    padding-top: 25px;
+}
+
+.trajet-link {
+    text-decoration: none;
+}
+
+.trajet-card {
+    display: flex;
+    justify-content: space-between;
+    background-color: #f7f7f7;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.trajet-card:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.trajet-locations,
+.trajet-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.trajet-locations {
+    flex-basis: 30%;
+}
+
+.trajet-location-depart,
+.trajet-location-destination {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.trajet-location-depart::before {
+    content: 'Départ : ';
+    font-weight: normal;
+    color: #666;
+}
+
+.trajet-location-destination::before {
+    content: 'Destination : ';
+    font-weight: normal;
+    color: #666;
+}
+
+.trajet-details {
+    flex-basis: 70%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.trajet-dates,
+.trajet-places,
+.trajet-conducteur {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+}
+
+.trajet-dates p {
+    margin-bottom: 0.2rem;
+}
+
+.trajet-places {
+    font-weight: bold;
+    color: #2659ff;
+}
+
+.trajet-conducteur {
+    font-weight: bold;
+
+}
+
+
+.trajet-card {
+    /* ... (Les autres règles CSS existantes) ... */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Ajoutez cette ligne */
+}
+
+.trajet-card:hover {
+    /* ... (Les autres règles CSS existantes) ... */
+    transform: translateY(-10px); /* Ajoutez cette ligne */
+}
+
+@media (max-width: 768px) {
+    .trajet-card {
+        flex-direction: column;
+    }
+
+    .trajet-locations,
+    .trajet-details {
+        width: 100%;
+    }
+
+    .trajet-details {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-top: 1rem;
+    }
+}

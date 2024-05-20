@@ -1,0 +1,75 @@
+/* public/css/trajet.css */
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.trajet-card {
+    display: flex;
+    flex-direction: column;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.trajet-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.trajet-location,
+.trajet-dates,
+.trajet-places {
+    flex-grow: 1;
+}
+
+.trajet-dates p {
+    margin: 0;
+    padding: 5px 0;
+}
+
+.reserver {
+    text-align: center;
+}
+
+.comment {
+    background-color: #e6e6e6;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.comment strong {
+    display: block;
+    margin-bottom: 5px;
+}
+.trajet-dates p {
+    margin: 0;
+    padding: 5px 0;
+}
+
+.trajet-dates strong {
+    font-weight: bold;
+}
+
+.date {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
+    margin-right: 5px;
+}
+
+.time {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #555;
+}

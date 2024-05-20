@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil de {{ user.prenom }} {{ user.nom }}{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
+{% endblock %}
+{% block body %}
+    <h1>Profil de {{ user.prenom }} {{ user.nom }}</h1>
+
+    <table class="table">
+        <tr>
+            <th>{% trans %}Email{% endtrans %}</th>
+            <td>{{ user.email }}</td>
+        </tr>
+        <tr>
+            <th>{% trans %}Téléphone{% endtrans %}</th>
+            <td>{{ user.telephone }}</td>
+        </tr>
+        <tr>
+            <th>{% trans %}Nombre de trajets{% endtrans %}</th>
+            <td>{{ user.trajets|length }}</td>
+        </tr>
+        <tr>
+            <th>{% trans %}Nombre de réservations{% endtrans %}</th>
+            <td>{{ user.reservations|length }}</td>
+        </tr>
+        <tr>
+            <th>{% trans %}Nombre de commentaires{% endtrans %}</th>
+            <td>{{ user.commentaires|length }}</td>
+        </tr>
+        <tr>
+            <th>{% trans %}Notes reçues{% endtrans %}</th>
+            <td>{{ user.getNotesRecues()|length }}</td>
+        </tr>
+    </table>
+
+    <h1>{% trans %}Mes trajets proposés{% endtrans %}</h1>
+    {% if user.trajets|length > 0 %}
+        <ul>
+            {% for trajet in user.trajets %}
+                <a href="{{ path('trajet.show', {id: trajet.id}) }}" class="trajet-link">
+                    <div class="trajet-card">
+                        <div class="trajet-locations">
+                            <div class="trajet-location-depart">
+                                <p>{{ trajet.villeDepart }}</p>
+                            </div>
+                            <div class="trajet-location-destination">
+                                <p>{{ trajet.villeDestination }}</p>
+                            </div>
+                        </div>
+                        <div class="trajet-details">
+                            <div class="trajet-dates">
+                                <p>{% trans %}Départ{% endtrans %} : {{ trajet.dateDepart|date('d/m/Y H:i') }}</p>
+                                <p>{% trans %}Arrivée{% endtrans %} : {{ trajet.dateArrivee|date('d/m/Y H:i') }}</p>
+                            </div>
+                            <div class="trajet-places">
+                                <p>{{ trajet.nombrePlaces }} {% trans %}places disponibles{% endtrans %}</p>
+                            </div>
+                            <a href="{{ path('trajet.edit', {id: trajet.id}) }}" class="editer"> {% trans %}Editer{% endtrans %}</a>
+                            <a href="{{ path('trajet.delete', {id: trajet.id}) }}" class="supprimer">{% trans %}Supprimer{% endtrans %}</a>
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
+
+        </ul>
+    {% else %}
+        <p>{% trans %}Aucun trajet proposé pour le moment{% endtrans %}.</p>
+    {% endif %}
+
+        <h1>{% trans %}Mes notes reçues{% endtrans %}</h1>
+    <div class = "notes_recues">
+        {% if user.getNotesRecues()|length > 0 %}
+            <ul>
+                {% for note in user.getNotesRecues() %}
+                    <li>{{ note.passager.prenom }} {{ note.passager.nom }} : {{ note.valeur }} / 5 - {{ note.commentaire }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>{% trans %}Aucune note reçue pour le moment.{% endtrans %}</p>
+        {% endif %}
+    </div>
+{% endblock %}

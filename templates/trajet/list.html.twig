@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% trans %}Liste des trajets{% endtrans %}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/listeTrajet.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>{% trans %}Trajets disponibles{% endtrans %}</h1>
+        {% for trajet in trajets %}
+            <a href="{{ path('trajet.show', {id: trajet.id}) }}" class="trajet-link">
+                <div class="trajet-card">
+                    <div class="trajet-locations">
+                        <div class="trajet-location-depart">
+                            <p>{{ trajet.villeDepart }}</p>
+                        </div>
+                        <div class="trajet-location-destination">
+                            <p>{{ trajet.villeDestination }}</p>
+                        </div>
+                    </div>
+                    <div class="trajet-details">
+                        <div class="trajet-dates">
+                            <p>{% trans %}Départ{% endtrans %} : {{ trajet.dateDepart|date('d/m/Y H:i') }}</p>
+                            <p>{% trans %}Arrivée{% endtrans %} : {{ trajet.dateArrivee|date('d/m/Y H:i') }}</p>
+                        </div>
+                        <div class="trajet-places">
+                            <p>{{ trajet.nombrePlaces }} {% trans %}places disponibles{% endtrans %}</p>
+                        </div>
+                        <div class="trajet-conducteur">
+                            <p>{% trans %}Conducteur{% endtrans %} : {{ trajet.conducteur.prenom }} {{ trajet.conducteur.nom }} ({% trans %}Note moyenne{% endtrans %} : {{ trajet.conducteur.getNoteMoyenne()|default('-') }}/5)</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+{% endblock %}
